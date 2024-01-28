@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsOptional, IsString } from 'class-validator';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateRecipeDto {
     @ApiProperty()
@@ -18,4 +18,8 @@ export class CreateRecipeDto {
     @ApiProperty()
     @IsString()
     instructions: string;
+
+    @ApiProperty()
+    @IsNumber()
+    userId: number;
 }

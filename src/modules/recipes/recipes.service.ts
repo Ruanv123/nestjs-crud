@@ -14,13 +14,44 @@ export class RecipesService {
         });
     }
 
-    async findAll(): Promise<Recipe[]> {
-        return await this.db.recipe.findMany();
+    async findAll() {
+        return await this.db.recipe.findMany({
+            select: {
+                id: true,
+                title: true,
+                description: true,
+                ingredients: true,
+                instructions: true,
+                createdAt: true,
+                updatedAt: true,
+                User: {
+                    select: {
+                        id: true,
+                        name: true,
+                    },
+                },
+            },
+        });
     }
 
-    async findOne(id: number): Promise<Recipe> {
+    async findOne(id: number) {
         return await this.db.recipe.findUnique({
             where: { id },
+            select: {
+                id: true,
+                title: true,
+                description: true,
+                ingredients: true,
+                instructions: true,
+                createdAt: true,
+                updatedAt: true,
+                User: {
+                    select: {
+                        id: true,
+                        name: true,
+                    },
+                },
+            },
         });
     }
 
