@@ -39,6 +39,12 @@ export class UserService {
         });
     }
 
+    async findByEmail(email: string): Promise<User> {
+        return await this.db.user.findUnique({
+            where: { email },
+        });
+    }
+
     async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
         const userAlreadyExist = await this.db.user.findUnique({
             where: { id },
